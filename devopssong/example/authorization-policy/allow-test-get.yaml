@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-test-get
+  namespace: istio
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces: ["test"]
+    to:
+    - operation:
+        methods: ["GET"]

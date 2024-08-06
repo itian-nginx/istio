@@ -1,0 +1,17 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: deny-test-get-v2
+  namespace: istio
+spec:
+  selector:
+    matchLabels:
+      version: v2
+  action: DENY
+  rules:
+  - from:
+    - source:
+        namespaces: ["test"]
+    to:
+    - operation:
+        methods: ["GET"]
